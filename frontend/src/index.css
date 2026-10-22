@@ -1,0 +1,306 @@
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------------------
+ * Lifeline 360 design tokens
+ *
+ * The single source of colour, type, depth and motion for the whole frontend.
+ * Tailwind v4 keeps theme config in CSS: every custom property below becomes a
+ * utility (--color-brand-600 -> bg-brand-600, text-brand-600 …), so components
+ * reference roles, never raw hex values. Re-theming the site means editing
+ * this block only.
+ *
+ * Colour roles
+ *   brand      medical blue. Primary actions, links, focus, key highlights.
+ *   aqua       clinical cyan. Live states, vitals, secondary highlights.
+ *   ink        blue-biased neutrals. Text, borders, surfaces, dark bands.
+ *   emergency  red. Reserved for ambulance and blood requests, the two
+ *              time-critical services, so red always means "urgent".
+ *   success / warning / danger  status only, never decoration.
+ *
+ * Contrast notes (on white): brand-600 6.3:1, brand-700 8.3:1, aqua-700 6.4:1,
+ * ink-600 7.7:1, ink-500 5.0:1, emergency-600 4.8:1. ink-400 (3:1) is for
+ * icons, placeholders and large text only.
+ * ------------------------------------------------------------------------- */
+@theme {
+  --color-brand-50: #eff5ff;
+  --color-brand-100: #dce8ff;
+  --color-brand-200: #bfd5ff;
+  --color-brand-300: #93b8fd;
+  --color-brand-400: #6191f8;
+  --color-brand-500: #3c6ef1;
+  --color-brand-600: #2453db;
+  --color-brand-700: #1c43b8;
+  --color-brand-800: #1c3994;
+  --color-brand-900: #1c3475;
+  --color-brand-950: #142148;
+
+  --color-aqua-50: #ebfbfd;
+  --color-aqua-100: #cff5f9;
+  --color-aqua-200: #a3eaf2;
+  --color-aqua-300: #67d8e8;
+  --color-aqua-400: #2dbfd6;
+  --color-aqua-500: #10a2bc;
+  --color-aqua-600: #0e819b;
+  --color-aqua-700: #12677d;
+  --color-aqua-800: #165567;
+  --color-aqua-900: #174757;
+
+  --color-ink-50: #f5f8fc;
+  --color-ink-100: #ebf0f7;
+  --color-ink-200: #d9e1ec;
+  --color-ink-300: #b9c5d6;
+  --color-ink-400: #8796ae;
+  --color-ink-500: #607089;
+  --color-ink-600: #45546d;
+  --color-ink-700: #313e55;
+  --color-ink-800: #1f2a3e;
+  --color-ink-900: #121b2d;
+  --color-ink-950: #0a1222;
+
+  --color-emergency-50: #fff1f1;
+  --color-emergency-100: #ffe0e1;
+  --color-emergency-200: #ffc7c9;
+  --color-emergency-300: #ff9ea2;
+  --color-emergency-400: #f6646b;
+  --color-emergency-500: #e9414a;
+  --color-emergency-600: #d92d35;
+  --color-emergency-700: #b8222a;
+  --color-emergency-800: #981f26;
+
+  --color-success: #12a150;
+  --color-success-soft: #e7f7ee;
+  --color-warning: #c27803;
+  --color-warning-soft: #fdf4e3;
+  --color-danger: #d92d35;
+  --color-danger-soft: #fff1f1;
+
+  /* Type: Manrope's squared, precise forms for headings over Figtree's
+     open, friendly body text. Devanagari falls back per glyph, ready for the
+     Hindi version of the site. */
+  --font-display:
+    'Manrope', 'Noto Sans Devanagari', 'Nirmala UI', ui-sans-serif, system-ui, sans-serif;
+  --font-sans:
+    'Figtree', 'Noto Sans Devanagari', 'Nirmala UI', ui-sans-serif, system-ui,
+    -apple-system, 'Segoe UI', sans-serif;
+
+  --text-display-xs: 1.5rem;
+  --text-display-xs--line-height: 1.2;
+  --text-display-xs--letter-spacing: -0.015em;
+  --text-display-sm: 2rem;
+  --text-display-sm--line-height: 1.12;
+  --text-display-sm--letter-spacing: -0.022em;
+  --text-display-md: 2.625rem;
+  --text-display-md--line-height: 1.07;
+  --text-display-md--letter-spacing: -0.028em;
+  --text-display-lg: 3.375rem;
+  --text-display-lg--line-height: 1.03;
+  --text-display-lg--letter-spacing: -0.034em;
+  --text-display-xl: 4rem;
+  --text-display-xl--line-height: 1;
+  --text-display-xl--letter-spacing: -0.038em;
+
+  /* Depth is tinted with the ink hue, never neutral black. */
+  --shadow-card: 0 1px 2px rgb(18 27 45 / 0.04), 0 6px 20px -6px rgb(18 27 45 / 0.08);
+  --shadow-card-hover:
+    0 2px 6px rgb(18 27 45 / 0.05), 0 24px 48px -14px rgb(18 27 45 / 0.2);
+  --shadow-float: 0 20px 50px -14px rgb(18 27 45 / 0.3), 0 2px 8px rgb(18 27 45 / 0.06);
+  --shadow-glow: 0 10px 26px -8px rgb(36 83 219 / 0.55);
+  --shadow-glow-emergency: 0 10px 26px -8px rgb(217 45 53 / 0.5);
+
+  --radius-4xl: 2rem;
+  --radius-5xl: 2.5rem;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 8s ease-in-out infinite;
+  --animate-spin-slow: spin 48s linear infinite;
+  --animate-ping-soft: ping-soft 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-route: route-dash 1.6s linear infinite;
+  --animate-heartbeat: heartbeat 1.6s ease-in-out infinite;
+  /* Starts after PulseLine has drawn its trace; `backwards` keeps the pulse
+     hidden at its start point until then. */
+  --animate-pulse-travel: pulse-travel 4.5s linear 2.6s infinite backwards;
+}
+
+/* Keyframes live outside @theme so they are always emitted, including for the
+   custom utilities below that reference the --animate-* tokens directly. */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ping-soft {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  80%,
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: -200% 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulse-travel {
+  from {
+    stroke-dashoffset: 5;
+  }
+  to {
+    stroke-dashoffset: -95;
+  }
+}
+
+@keyframes route-dash {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.18);
+  }
+  30% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.12);
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-white);
+    color: var(--color-ink-600);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--color-ink-900);
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background-color: var(--color-brand-600);
+    color: var(--color-white);
+  }
+
+  /* Native select arrow is replaced by an icon in SelectField. */
+  select {
+    appearance: none;
+  }
+}
+
+/* Faint dotted field used behind hero and section art. */
+@utility bg-dots {
+  background-image: radial-gradient(var(--color-ink-200) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+@utility bg-dots-dark {
+  background-image: radial-gradient(rgb(255 255 255 / 0.08) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Brand gradient for one highlighted phrase per heading at most. */
+@utility text-gradient-brand {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-brand-600) 10%,
+    var(--color-aqua-500) 90%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Frosted card that floats over photography. */
+@utility glass {
+  background-color: rgb(255 255 255 / 0.88);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+  border: 1px solid rgb(255 255 255 / 0.7);
+}
+
+/* Loading placeholder sweep for images. */
+@utility skeleton {
+  background-color: var(--color-ink-100);
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgb(255 255 255 / 0.6) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+}
+
+/* ---------------------------------------------------------------------------
+ * Reduced motion
+ *
+ * Motion components are gated in JS by <MotionConfig reducedMotion="user">;
+ * this is the CSS-side safety net for keyframes, transitions and smooth
+ * scrolling that aren't driven by Motion.
+ * ------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
