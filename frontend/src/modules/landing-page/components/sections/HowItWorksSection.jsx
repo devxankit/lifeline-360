@@ -7,10 +7,10 @@ import Icon from '@/components/ui/Icon'
 import SectionHeading from '@/components/ui/SectionHeading'
 import { EASE_OUT } from '@/components/motion/variants'
 import { cn } from '@/lib/cn'
-import { membershipTile, servicePath, services, TONES } from '../../data/services'
+import { servicePath, serviceTiles, TONES } from '../../data/services'
 import JourneyTimeline from '../common/JourneyTimeline'
 
-const JOURNEYS = [...services, membershipTile]
+const JOURNEYS = serviceTiles
 
 /**
  * Pick a service and watch its journey play out, using the user flows from the

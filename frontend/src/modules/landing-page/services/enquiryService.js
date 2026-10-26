@@ -14,16 +14,20 @@ const PREVIEW_MESSAGES = {
     `Thank you, ${firstName(values.name)}. This is a preview build, so nothing was sent. On the live site your message goes straight to the Lifeline 360 care team.`,
   partner: (values) =>
     `Thank you, ${firstName(values.name)}. This is a preview build, so nothing was sent. On the live site our partner team will contact you about verification.`,
+  ambulance: (values) =>
+    `Thank you, ${firstName(values.patientName)}. This is a preview build, so no ambulance was booked. In the app, this request goes to verified drivers near your pickup point with ${values.hospitalName} as the destination, and you can track the ambulance live.`,
+  blood: (values) =>
+    `Thank you, ${firstName(values.patientName)}. This is a preview build, so no blood was requested. In the app, your request for ${values.units} ${values.units === '1' ? 'unit' : 'units'} of ${values.bloodGroup} goes to blood banks serving ${values.hospitalName}, and you see their response in the app.`,
 }
 
 /**
- * Sends a website enquiry (`contact` or `partner`).
+ * Sends a website enquiry or booking request.
  *
  * Posts to `${VITE_ENQUIRY_API_URL}/${kind}` once that variable is set. The
  * endpoint should reply `{ message }` on success, or `{ message, fieldErrors }`
  * with a 4xx status, and the form maps fieldErrors back onto its inputs.
  *
- * @param {'contact'|'partner'} kind
+ * @param {'contact'|'partner'|'ambulance'|'blood'} kind
  * @param {Object} values - validated form values (including the honeypot)
  * @param {{formStartedAt?: number}} [meta]
  */
@@ -61,3 +65,6 @@ export async function submitEnquiry(kind, values, meta = {}) {
 
 export const submitContact = (values, meta) => submitEnquiry('contact', values, meta)
 export const submitPartner = (values, meta) => submitEnquiry('partner', values, meta)
+export const submitAmbulanceBooking = (values, meta) =>
+  submitEnquiry('ambulance', values, meta)
+export const submitBloodRequest = (values, meta) => submitEnquiry('blood', values, meta)

@@ -2,11 +2,18 @@ import { AnimatePresence, motion } from 'motion/react'
 import Icon from '@/components/ui/Icon'
 import { cn } from '@/lib/cn'
 
+const IDLE_TONES = {
+  brand: 'bg-brand-600 shadow-glow hover:bg-brand-700',
+  emergency: 'bg-emergency-600 shadow-glow-emergency hover:bg-emergency-700',
+}
+
 /**
  * Submit button that animates through idle → submitting → success/error,
  * so the outcome shows right where the visitor is looking.
  *
  * @param {'idle'|'submitting'|'success'|'error'} props.state
+ * @param {'brand'|'emergency'} [props.tone='brand'] - idle colour; emergency
+ *        is for ambulance and blood requests
  */
 export default function SubmitButton({
   state = 'idle',
@@ -14,6 +21,7 @@ export default function SubmitButton({
   submittingLabel = 'Sending…',
   successLabel = 'Sent',
   errorLabel = 'Try again',
+  tone = 'brand',
   fullWidth = false,
   className,
   ...rest
@@ -42,7 +50,7 @@ export default function SubmitButton({
           ? 'bg-success'
           : state === 'error'
             ? 'bg-danger'
-            : 'bg-brand-600 shadow-glow hover:bg-brand-700',
+            : (IDLE_TONES[tone] ?? IDLE_TONES.brand),
         fullWidth && 'w-full',
         className
       )}

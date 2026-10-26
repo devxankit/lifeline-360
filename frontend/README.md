@@ -15,17 +15,18 @@ npm run smoke    # renders every route and checks one <h1> per page
 
 ## Routes
 
-| Path                        | Page                                                                     |
-| --------------------------- | ------------------------------------------------------------------------ |
-| `/`                         | Landing page: hero + 7 sections + app/partner call to action             |
-| `/about`                    | About Lifeline 360 and the seven apps and panels                         |
-| `/services`                 | All services                                                             |
-| `/services/:slug`           | `ambulance`, `nursing-caretaker`, `medicine`, `laboratory`, `blood-bank` |
-| `/membership`               | Membership plans and benefits                                            |
-| `/partners`                 | Partner types, onboarding and registration form                          |
-| `/contact`                  | Contact channels and form (`?topic=membership` preselects a topic)       |
-| `/faqs`                     | Searchable FAQs                                                          |
-| `/privacy-policy`, `/terms` | Legal pages (drafts, see below)                                          |
+| Path                        | Page                                                                                               |
+| --------------------------- | -------------------------------------------------------------------------------------------------- |
+| `/`                         | Landing page: hero, Ayushman (PM-JAY) hospital search, 7 more sections, app/partner call to action |
+| `/about`                    | About Lifeline 360 and the seven apps and panels                                                   |
+| `/ayushman-hospitals`       | Full PM-JAY hospital locator, scheme facts, journey and FAQs                                       |
+| `/services`                 | All services                                                                                       |
+| `/services/:slug`           | `ambulance`, `nursing-caretaker`, `medicine`, `laboratory`, `blood-bank`                           |
+| `/membership`               | Membership plans and benefits                                                                      |
+| `/partners`                 | Partner types, onboarding and registration form                                                    |
+| `/contact`                  | Contact channels and form (`?topic=membership` preselects a topic)                                 |
+| `/faqs`                     | Searchable FAQs                                                                                    |
+| `/privacy-policy`, `/terms` | Legal pages (drafts, see below)                                                                    |
 
 ## Structure
 
@@ -94,14 +95,22 @@ plus a CSS kill switch in `index.css`).
   such on screen. They must be reviewed by the client's legal counsel.
 - **App mockups** use sample names and figures (e.g. "Aarav Sharma", ETA 7 min)
   purely as illustration.
+- **Ayushman (PM-JAY) hospitals are sample listings** (`data/hospitals.js`):
+  names, numbers and bed counts are invented, every card says "Sample listing",
+  and sample phone numbers are never dialable. Load the official list of
+  PM-JAY empanelled hospitals, set `isSampleDirectory = false`, and the labels
+  disappear and numbers become tap-to-call. Each record needs
+  `name, state, city, area, coords [lat, lng], phone, beds, specialities,
+emergency24x7, bloodBank`; new cities go in `cities` with their centre.
 
-## Forms (contact + partner registration)
+## Forms (contact, partner registration, ambulance and blood requests)
 
 The backend has no enquiry endpoints yet, so the forms validate fully but run in
 **preview mode**: nothing is sent, and the form says so on screen. To go live,
 set `VITE_ENQUIRY_API_URL` (see `.env.example`). The forms then `POST` JSON to
-`${VITE_ENQUIRY_API_URL}/contact` and `${VITE_ENQUIRY_API_URL}/partner`. The
-endpoint should reply `{ message }`, or `{ message, fieldErrors }` with a 4xx
+`${VITE_ENQUIRY_API_URL}/contact`, `/partner`, `/ambulance` and `/blood` (the
+last two come from the hospital locator and include `hospitalId` and
+`hospitalName`). The endpoint should reply `{ message }`, or `{ message, fieldErrors }` with a 4xx
 status, and field errors show under the matching inputs.
 
 ## Photography
@@ -128,3 +137,5 @@ required), cropped and converted to WebP. Sources, for the record:
 | support-agent       | [7709255](https://www.pexels.com/photo/7709255/)                                       |
 | partners-phone      | [5327867](https://www.pexels.com/photo/5327867/)                                       |
 | doctor-consultation | [14558560](https://www.pexels.com/photo/14558560/)                                     |
+| hospital-entrance   | [263402](https://www.pexels.com/photo/263402/)                                         |
+| hospital-help-desk  | [4269274](https://www.pexels.com/photo/4269274/)                                       |

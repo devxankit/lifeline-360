@@ -6,7 +6,11 @@ import Photo from '@/components/ui/Photo'
 import { EASE_OUT, staggerContainer } from '@/components/motion/variants'
 import heroImage from '../../assets/images/hero-doctor-patient.webp'
 import PulseLine from '../common/PulseLine'
-import { AmbulanceEtaCard, CareBookingCard, LabReportCard } from '../mockups/StatusCards'
+import {
+  AmbulanceEtaCard,
+  CareBookingCard,
+  PmjayHospitalCard,
+} from '../mockups/StatusCards'
 
 const item = {
   hidden: { opacity: 0, y: 18 },
@@ -27,9 +31,9 @@ const TRUST_POINTS = [
 ]
 
 const SERVICE_DOTS = [
+  { icon: 'hospital', className: 'bg-brand-600' },
   { icon: 'ambulance', className: 'bg-emergency-600' },
   { icon: 'handHeart', className: 'bg-aqua-600' },
-  { icon: 'pill', className: 'bg-brand-600' },
 ]
 
 function FloatIn({ delay, from, className, children }) {
@@ -74,7 +78,7 @@ export default function HeroSection() {
           initial="hidden"
           animate="visible"
           variants={staggerContainer(0.1, 0.05)}
-          className="flex flex-col gap-7 lg:col-span-7"
+          className="flex flex-col gap-6 lg:col-span-7"
         >
           <motion.p
             variants={item}
@@ -90,7 +94,7 @@ export default function HeroSection() {
                 </span>
               ))}
             </span>
-            5 healthcare services. 1 app.
+            6 healthcare services. 1 app.
           </motion.p>
 
           <motion.h1
@@ -113,9 +117,9 @@ export default function HeroSection() {
             variants={item}
             className="max-w-xl text-lg leading-relaxed text-ink-500 sm:text-xl sm:leading-relaxed"
           >
-            Ambulance booking, home nursing, medicine delivery, lab tests at home and
-            blood bank requests in one app, with live tracking, verified partners and
-            support in Hindi and English.
+            Find hospitals that accept your Ayushman card, book an ambulance, home
+            nursing, medicine delivery, lab tests at home and blood in one app, with live
+            tracking, verified partners and support in Hindi and English.
           </motion.p>
 
           <motion.div variants={item} className="flex flex-col gap-3 sm:flex-row">
@@ -132,6 +136,30 @@ export default function HeroSection() {
               Book an ambulance
             </Button>
           </motion.div>
+
+          {/* A plain in-page anchor, so it scrolls every time it's clicked. */}
+          <motion.a
+            variants={item}
+            href="#ayushman-hospitals"
+            className="group flex items-center gap-3 self-start rounded-2xl bg-white py-2 pr-4 pl-2 shadow-card ring-1 ring-ink-200/70 transition-[box-shadow,color] duration-300 ring-inset hover:shadow-card-hover hover:ring-brand-200"
+          >
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-600 text-white">
+              <Icon name="hospital" size={20} />
+            </span>
+            <span className="min-w-0">
+              <span className="block text-[0.6875rem] font-bold tracking-[0.12em] text-brand-700 uppercase">
+                New · Ayushman card (PM-JAY)
+              </span>
+              <span className="block text-[0.9375rem] font-semibold text-ink-900">
+                Find PM-JAY hospitals near you
+              </span>
+            </span>
+            <Icon
+              name="arrowRight"
+              size={18}
+              className="ml-1 text-brand-600 transition-transform duration-300 group-hover:translate-x-1"
+            />
+          </motion.a>
 
           <motion.ul
             variants={item}
@@ -198,7 +226,7 @@ export default function HeroSection() {
               from="bottom"
               className="absolute bottom-[5%] left-[4%] hidden sm:block"
             >
-              <LabReportCard />
+              <PmjayHospitalCard />
             </FloatIn>
           </div>
         </div>

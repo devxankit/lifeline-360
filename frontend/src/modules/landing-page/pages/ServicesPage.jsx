@@ -9,24 +9,23 @@ import SectionHeading from '@/components/ui/SectionHeading'
 import doctorConsultation from '../assets/images/doctor-consultation.webp'
 import CtaBand from '../components/common/CtaBand'
 import PageHero from '../components/common/PageHero'
-import ServiceCard from '../components/common/ServiceCard'
+import ServiceGrid from '../components/common/ServiceGrid'
 import PhoneMockup from '../components/mockups/PhoneMockup'
 import { accountFeatures } from '../data/platform'
-import { membershipTile, services } from '../data/services'
 
 export default function ServicesPage() {
   return (
     <>
       <Seo
         title="Healthcare services"
-        description="Ambulance booking, nursing and caretakers, medicine delivery, lab tests with home sample collection, blood bank requests and membership, all in the Lifeline 360 app."
+        description="Ayushman card hospital search, ambulance booking, nursing and caretakers, medicine delivery, lab tests with home sample collection, blood bank requests and membership, all in the Lifeline 360 app."
       />
 
       <PageHero
         breadcrumbs={[{ label: 'Home', to: '/' }, { label: 'Services' }]}
         eyebrow="Healthcare services"
         title="Every service your family needs, in one app"
-        description="Five healthcare services and a membership plan, delivered by verified partners. Book in a few taps, follow each request live and keep everything in one history."
+        description="Six healthcare services and a membership plan, from finding a hospital that accepts your Ayushman card to care at home. Book in a few taps, follow each request live and keep everything in one history."
         image={doctorConsultation}
         imageAlt="A doctor measuring a patient’s blood pressure during a consultation"
         actions={
@@ -49,16 +48,7 @@ export default function ServicesPage() {
 
       <section className="py-20 sm:py-24">
         <Container width="wide">
-          <StaggerGroup
-            className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-            stagger={0.07}
-          >
-            {[...services, membershipTile].map((service) => (
-              <StaggerItem key={service.slug} variant="rise" className="h-full">
-                <ServiceCard service={service} />
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
+          <ServiceGrid />
         </Container>
       </section>
 

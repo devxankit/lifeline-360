@@ -5,17 +5,26 @@ import { cn } from '@/lib/cn'
 import { serviceMenu } from '../data/navigation'
 import { TONES } from '../data/services'
 
-/** Desktop "Services" dropdown: every service with a one-line summary. */
+/**
+ * Desktop "Services" dropdown: every service with a one-line summary. A
+ * badged service (the new Ayushman hospital finder) spans the full width, so
+ * the remaining six fill the two columns evenly.
+ */
 export default function ServicesMenu({ onNavigate }) {
   return (
     <div className="w-[min(46rem,calc(100vw-3rem))] overflow-hidden rounded-3xl border border-ink-200/80 bg-white shadow-float">
       <ul className="grid grid-cols-2 gap-1 p-3">
         {serviceMenu.map((item) => (
-          <li key={item.to}>
+          <li key={item.to} className={item.badge ? 'col-span-2' : undefined}>
             <Link
               to={item.to}
               onClick={onNavigate}
-              className="group/item flex items-start gap-3.5 rounded-2xl p-3.5 transition-colors hover:bg-ink-50"
+              className={cn(
+                'group/item flex items-start gap-3.5 rounded-2xl p-3.5 transition-colors',
+                item.badge
+                  ? 'bg-brand-50/70 ring-1 ring-brand-100 ring-inset hover:bg-brand-50'
+                  : 'hover:bg-ink-50'
+              )}
             >
               <span
                 className={cn(
@@ -28,6 +37,11 @@ export default function ServicesMenu({ onNavigate }) {
               <span className="min-w-0">
                 <span className="flex items-center gap-1 font-display text-[0.9375rem] font-bold text-ink-900">
                   {item.label}
+                  {item.badge ? (
+                    <span className="ml-1 rounded-full bg-brand-600 px-2 py-0.5 font-sans text-[0.625rem] font-bold tracking-wide text-white uppercase">
+                      {item.badge}
+                    </span>
+                  ) : null}
                   <Icon
                     name="arrowRight"
                     size={14}

@@ -75,6 +75,32 @@ export function CareBookingCard({ className }) {
   )
 }
 
+export function PmjayHospitalCard({ className }) {
+  return (
+    <div className={cn('glass w-[16.5rem] rounded-2xl p-4 shadow-float', className)}>
+      <div className="flex items-center gap-3">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-600 text-white">
+          <Icon name="hospital" size={20} />
+        </span>
+        <div className="min-w-0">
+          <p className="text-[0.8125rem] font-semibold text-ink-900">
+            Ayushman card accepted
+          </p>
+          <p className="text-xs text-ink-500">PM-JAY hospital · 2.1 km away</p>
+        </div>
+      </div>
+      <div className="mt-3 grid grid-cols-2 gap-2 text-center text-[0.6875rem] font-semibold">
+        <span className="rounded-lg bg-emergency-600 px-2 py-1.5 text-white">
+          Book ambulance
+        </span>
+        <span className="rounded-lg bg-emergency-50 px-2 py-1.5 text-emergency-700 ring-1 ring-emergency-100 ring-inset">
+          Request blood
+        </span>
+      </div>
+    </div>
+  )
+}
+
 export function LabReportCard({ className }) {
   return (
     <div className={cn('glass w-[15rem] rounded-2xl p-4 shadow-float', className)}>

@@ -13,7 +13,7 @@ export const faqCategories = [
     items: [
       {
         q: 'What is Lifeline 360?',
-        a: 'Lifeline 360 is one healthcare platform for ambulance booking, home nursing and caretakers, medicine delivery, lab tests with home sample collection and blood bank requests, with membership plans, calling support and live tracking built in.',
+        a: 'Lifeline 360 is one healthcare platform with six services: finding hospitals that accept the Ayushman card (PM-JAY), ambulance booking, home nursing and caretakers, medicine delivery, lab tests with home sample collection and blood bank requests. Membership plans, calling support and live tracking are built in.',
         featured: true,
       },
       {
@@ -33,6 +33,33 @@ export const faqCategories = [
       {
         q: 'Can I save more than one address?',
         a: 'Yes. Your profile can hold several addresses, such as your home and your parents’ home, along with an emergency contact.',
+      },
+    ],
+  },
+  {
+    id: 'ayushman',
+    label: 'Ayushman card (PM-JAY)',
+    items: [
+      {
+        q: 'Which hospitals can I find with the Ayushman search?',
+        a: 'Private hospitals empanelled under Ayushman Bharat PM-JAY. Search by state and city, or use your location, to see each hospital’s distance, phone number and specialities.',
+        featured: true,
+        services: ['ayushman-hospitals'],
+      },
+      {
+        q: 'Is treatment free with an Ayushman card?',
+        a: 'For eligible families, covered treatment at PM-JAY empanelled hospitals is cashless, up to ₹5 lakh per family per year. The hospital’s Ayushman help desk confirms what your treatment covers.',
+        services: ['ayushman-hospitals'],
+      },
+      {
+        q: 'Does Lifeline 360 issue Ayushman cards?',
+        a: 'No. Lifeline 360 helps you find hospitals and book an ambulance or blood for them. To check eligibility or get an Ayushman card, use the official PM-JAY channels or ask at a hospital’s Ayushman help desk.',
+        services: ['ayushman-hospitals'],
+      },
+      {
+        q: 'Can I book an ambulance to a PM-JAY hospital?',
+        a: 'Yes. Find the hospital in the search and tap Book ambulance; the hospital is set as the destination. You can also request blood for a patient there.',
+        services: ['ayushman-hospitals', 'ambulance'],
       },
     ],
   },

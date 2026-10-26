@@ -93,3 +93,39 @@ export const partnerSchema = z.object({
   message: z.string().trim().max(1000, 'Please keep this under 1000 characters'),
   website,
 })
+
+export const BLOOD_GROUPS = ['A+', 'A−', 'B+', 'B−', 'AB+', 'AB−', 'O+', 'O−']
+
+export const BLOOD_UNIT_OPTIONS = ['1', '2', '3', '4'].map((units) => ({
+  value: units,
+  label: units === '1' ? '1 unit' : `${units} units`,
+}))
+
+/** Booking an ambulance to a hospital chosen in the PM-JAY locator. */
+export const ambulanceBookingSchema = z.object({
+  pickup: z
+    .string()
+    .trim()
+    .min(5, 'Please enter the pickup address')
+    .max(200, 'Please keep the address under 200 characters'),
+  patientName: name,
+  phone,
+  note: z.string().trim().max(300, 'Please keep this under 300 characters'),
+  website,
+})
+
+/** Requesting blood for a patient at a hospital chosen in the locator. */
+export const bloodRequestSchema = z.object({
+  bloodGroup: z
+    .string()
+    .refine((value) => BLOOD_GROUPS.includes(value), 'Please choose the blood group'),
+  units: z
+    .string()
+    .refine(
+      (value) => BLOOD_UNIT_OPTIONS.some((option) => option.value === value),
+      'Please choose how many units'
+    ),
+  patientName: name,
+  phone,
+  website,
+})

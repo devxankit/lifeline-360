@@ -3,6 +3,7 @@ import bloodBag from '../assets/images/blood-bag.webp'
 import bloodDonor from '../assets/images/blood-donor.webp'
 import caretakerHome from '../assets/images/caretaker-home.webp'
 import familyGenerations from '../assets/images/family-generations.webp'
+import hospitalEntrance from '../assets/images/hospital-entrance.webp'
 import labSample from '../assets/images/lab-sample.webp'
 import labTechnician from '../assets/images/lab-technician.webp'
 import medicineStrips from '../assets/images/medicine-strips.webp'
@@ -418,6 +419,48 @@ export const services = [
   },
 ]
 
+/**
+ * Ayushman Bharat PM-JAY hospital finder: the sixth service and the first one
+ * on the page. It has its own page (with the full locator) rather than the
+ * generic service template, so it carries `to`.
+ */
+export const hospitalTile = {
+  slug: 'ayushman-hospitals',
+  to: '/ayushman-hospitals',
+  name: 'Ayushman hospitals',
+  title: 'Ayushman card hospitals',
+  badge: 'New',
+  icon: 'hospital',
+  tone: 'brand',
+  summary:
+    'Find private hospitals that treat Ayushman card holders under PM-JAY by state and city, see how far they are, and book an ambulance or blood there.',
+  highlights: ['PM-JAY hospitals', 'Distance & contacts', 'Ambulance & blood in one tap'],
+  image: hospitalEntrance,
+  imageAlt: 'The emergency entrance of a hospital building',
+  journey: [
+    {
+      title: 'Search by state and city',
+      text: 'Find private hospitals empanelled under PM-JAY near you or your family.',
+      icon: 'search',
+    },
+    {
+      title: 'Compare distance and contacts',
+      text: 'See how far each hospital is, its specialities and its phone number.',
+      icon: 'mapPin',
+    },
+    {
+      title: 'Confirm with the hospital',
+      text: 'Check your treatment and eligibility with the hospital’s Ayushman help desk.',
+      icon: 'phoneCall',
+    },
+    {
+      title: 'Book an ambulance or blood',
+      text: 'Send an ambulance or a blood request for that hospital in one tap.',
+      icon: 'ambulance',
+    },
+  ],
+}
+
 /** Membership sits beside the services everywhere they are listed. */
 export const membershipTile = {
   slug: 'membership',
@@ -452,6 +495,9 @@ export const membershipTile = {
 }
 
 export const servicePath = (service) => service.to ?? `/services/${service.slug}`
+
+/** Every tile in the order the site lists them: the six services, then membership. */
+export const serviceTiles = [hospitalTile, ...services, membershipTile]
 
 export const getServiceBySlug = (slug) =>
   services.find((service) => service.slug === slug)

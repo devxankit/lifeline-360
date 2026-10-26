@@ -6,7 +6,7 @@ import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import { EASE_OUT } from '@/components/motion/variants'
 import { siteConfig } from '@/config/site'
-import { useLockBodyScroll } from '@/hooks/useLockBodyScroll'
+import { useDialog } from '@/hooks/useDialog'
 import { cn } from '@/lib/cn'
 import { primaryNav, serviceMenu } from '../data/navigation'
 import { TONES } from '../data/services'
@@ -22,52 +22,13 @@ export default function MobileNav({ open, onClose }) {
   const [servicesOpen, setServicesOpen] = useState(false)
   const panelRef = useRef(null)
   const closeButtonRef = useRef(null)
-  const previouslyFocused = useRef(null)
   const prefersReducedMotion = useReducedMotion()
 
-  useLockBodyScroll(open)
+  useDialog({ open, onClose, panelRef, initialFocusRef: closeButtonRef })
 
   useEffect(() => {
     if (!open) setServicesOpen(false)
   }, [open])
-
-  useEffect(() => {
-    if (!open) return undefined
-
-    previouslyFocused.current = document.activeElement
-    closeButtonRef.current?.focus()
-
-    const onKeyDown = (event) => {
-      if (event.key === 'Escape') {
-        onClose()
-        return
-      }
-
-      if (event.key !== 'Tab' || !panelRef.current) return
-
-      const focusable = panelRef.current.querySelectorAll(
-        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
-      )
-      if (!focusable.length) return
-
-      const first = focusable[0]
-      const last = focusable[focusable.length - 1]
-
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault()
-        last.focus()
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault()
-        first.focus()
-      }
-    }
-
-    document.addEventListener('keydown', onKeyDown)
-    return () => {
-      document.removeEventListener('keydown', onKeyDown)
-      previouslyFocused.current?.focus?.()
-    }
-  }, [open, onClose])
 
   const linkClasses = ({ isActive }) =>
     cn(

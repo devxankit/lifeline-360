@@ -21,6 +21,7 @@ import { MotionConfig } from 'motion/react'
 import LandingLayout from '@/modules/landing-page/layout/LandingLayout'
 import LandingPage from '@/modules/landing-page/pages/LandingPage'
 import AboutPage from '@/modules/landing-page/pages/AboutPage'
+import AyushmanHospitalsPage from '@/modules/landing-page/pages/AyushmanHospitalsPage'
 import ServicesPage from '@/modules/landing-page/pages/ServicesPage'
 import ServiceDetailPage from '@/modules/landing-page/pages/ServiceDetailPage'
 import MembershipPage from '@/modules/landing-page/pages/MembershipPage'
@@ -36,6 +37,7 @@ import { services } from '@/modules/landing-page/data/services'
 const routes = [
   ['/', '/', LandingPage],
   ['/about', '/about', AboutPage],
+  ['/ayushman-hospitals', '/ayushman-hospitals', AyushmanHospitalsPage],
   ['/services', '/services', ServicesPage],
   ...services.map((service) => [
     `/services/${service.slug}`,
@@ -93,13 +95,28 @@ for (const [url, pattern, Page] of routes) {
   }
 }
 
-// Every service must have its own page and appear in the home page grid.
+// Every service must have its own page and appear in the home page grid, and
+// the Ayushman hospital search must render first after the hero.
 const home = render('/', '/', LandingPage)
-for (const service of services) {
-  if (!home.includes(`href="/services/${service.slug}"`)) {
+const serviceLinks = [
+  '/ayushman-hospitals',
+  ...services.map((service) => `/services/${service.slug}`),
+]
+for (const link of serviceLinks) {
+  if (!home.includes(`href="${link}"`)) {
     failures += 1
-    console.error(`FAIL  home page does not link to /services/${service.slug}`)
+    console.error(`FAIL  home page does not link to ${link}`)
   }
+}
+const locatorAt = home.indexOf('id="ayushman-hospitals"')
+const servicesAt = home.indexOf('id="services"')
+if (locatorAt === -1 || servicesAt === -1 || locatorAt > servicesAt) {
+  failures += 1
+  console.error('FAIL  Ayushman hospital search is not the first section after the hero')
+}
+if (!home.includes('6 healthcare services')) {
+  failures += 1
+  console.error('FAIL  hero does not say 6 healthcare services')
 }
 
 console.log(`\n${routes.length - failures}/${routes.length} routes rendered cleanly.`)

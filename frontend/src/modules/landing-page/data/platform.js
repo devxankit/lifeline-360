@@ -119,7 +119,7 @@ export const accountFeatures = [
 
 /** Plain facts about the platform for stat rows. No invented usage figures. */
 export const platformFacts = [
-  { value: '5', label: 'care services in one app' },
+  { value: '6', label: 'healthcare services in one app' },
   { value: '7', label: 'apps and panels working together' },
   { value: '2', label: 'languages, Hindi and English' },
   { value: '1', label: 'account for every service' },

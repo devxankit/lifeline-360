@@ -120,14 +120,14 @@ export default function AboutPage() {
           <div className="flex flex-col gap-6 lg:col-span-6">
             <SectionHeading
               eyebrow="Why we exist"
-              title="Getting help shouldn’t take five apps and ten phone calls"
+              title="Getting help shouldn’t take six apps and ten phone calls"
             />
             <Reveal className="flex flex-col gap-4 text-lg leading-relaxed text-ink-600">
               <p>
                 When someone in the family needs care, the hardest part is often the
-                coordination: finding an ambulance, a nurse for the evening, the right
-                medicines, a lab that will collect a sample at home, or a blood bank with
-                the right group in stock.
+                coordination: finding a hospital that accepts your Ayushman card, an
+                ambulance, a nurse for the evening, the right medicines, a lab that will
+                collect a sample at home, or a blood bank with the right group in stock.
               </p>
               <p>
                 Lifeline 360 brings those services onto one platform. Every partner is

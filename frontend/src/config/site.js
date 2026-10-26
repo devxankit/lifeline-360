@@ -12,7 +12,7 @@ export const siteConfig = {
   name: 'Lifeline 360',
   tagline: 'Complete healthcare, one app',
   description:
-    'Lifeline 360 brings ambulance booking, home nursing and caretakers, medicine delivery, lab tests with home sample collection and blood bank requests together in one app.',
+    'Lifeline 360 helps you find hospitals that accept your Ayushman card and brings ambulance booking, home nursing and caretakers, medicine delivery, lab tests with home sample collection and blood bank requests together in one app.',
   url: env.siteUrl,
 
   contact: {

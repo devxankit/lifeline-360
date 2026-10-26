@@ -5,6 +5,7 @@ import LandingPage from './pages/LandingPage'
 
 // The home page ships in the main bundle; every other page loads on demand.
 const AboutPage = lazy(() => import('./pages/AboutPage'))
+const AyushmanHospitalsPage = lazy(() => import('./pages/AyushmanHospitalsPage'))
 const ServicesPage = lazy(() => import('./pages/ServicesPage'))
 const ServiceDetailPage = lazy(() => import('./pages/ServiceDetailPage'))
 const MembershipPage = lazy(() => import('./pages/MembershipPage'))
@@ -25,6 +26,7 @@ export default function LandingRoutes() {
       <Route element={<LandingLayout />}>
         <Route index element={<LandingPage />} />
         <Route path="about" element={<AboutPage />} />
+        <Route path="ayushman-hospitals" element={<AyushmanHospitalsPage />} />
         <Route path="services" element={<ServicesPage />} />
         <Route path="services/:slug" element={<ServiceDetailPage />} />
         <Route path="membership" element={<MembershipPage />} />

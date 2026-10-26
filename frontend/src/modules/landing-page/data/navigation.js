@@ -1,4 +1,4 @@
-import { membershipTile, servicePath, services } from './services'
+import { hospitalTile, servicePath, serviceTiles, services } from './services'
 
 /** Header navigation. `menu: true` opens the services panel on desktop. */
 export const primaryNav = [
@@ -10,18 +10,20 @@ export const primaryNav = [
 ]
 
 /** Services panel / mobile accordion entries. */
-export const serviceMenu = [...services, membershipTile].map((service) => ({
+export const serviceMenu = serviceTiles.map((service) => ({
   label: service.title,
   to: servicePath(service),
   icon: service.icon,
   tone: service.tone,
   description: service.summary,
+  badge: service.badge,
 }))
 
 export const footerColumns = [
   {
     title: 'Services',
     links: [
+      { label: hospitalTile.title, to: servicePath(hospitalTile) },
       ...services.map((service) => ({ label: service.title, to: servicePath(service) })),
       { label: 'Membership', to: '/membership' },
     ],

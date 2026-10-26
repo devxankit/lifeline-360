@@ -3,12 +3,12 @@ import { cn } from '@/lib/cn'
 import { TONES } from '../../data/services'
 
 const TILES = [
+  { label: 'Hospitals', icon: 'hospital', tone: 'brand' },
   { label: 'Ambulance', icon: 'ambulance', tone: 'emergency' },
   { label: 'Nursing', icon: 'handHeart', tone: 'aqua' },
   { label: 'Medicine', icon: 'pill', tone: 'brand' },
   { label: 'Lab tests', icon: 'flask', tone: 'aqua' },
   { label: 'Blood bank', icon: 'droplet', tone: 'emergency' },
-  { label: 'Membership', icon: 'crown', tone: 'brand' },
 ]
 
 /**
