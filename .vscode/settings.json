@@ -1,0 +1,9 @@
+{
+  // React Native apps are built with Gradle from the command line (see user-app/README.md).
+  // Stop the Java extension from importing the Android projects inside node_modules,
+  // which fails on these long paths and only produces false errors in the Problems panel.
+  "java.import.gradle.enabled": false,
+  "java.import.maven.enabled": false,
+  "java.import.exclusions": ["**/node_modules/**", "**/android/app/build/**", "**/.cxx/**"],
+  "java.configuration.updateBuildConfiguration": "disabled"
+}

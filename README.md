@@ -55,26 +55,14 @@ files from the original template.
 ## 📁 Project Structure
 
 ```text
-├── backend/
-│   └── src/
-│       ├── config/          DB connection & env configuration
-│       ├── controllers/     auth & users logic
-│       ├── middleware/      JWT protection, rate limiting, error handling
-│       ├── models/          Mongoose schemas
-│       ├── routes/          API routes
-│       ├── services/        captcha & email services
-│       ├── validation/      Zod schemas
-│       ├── app.js           Express app
-│       └── server.js        server entry
-│
-├── frontend/
-│   └── src/
-│       ├── components/      shared UI, forms, motion, brand, SEO
-│       ├── config/          site details & env access
-│       ├── modules/
-│       │   └── landing-page/   the public website (pages, sections, data, layout)
-│       ├── routes/          AppRoutes & ScrollToTop
-│       └── index.css        design tokens
-│
-└── tools/                   Scope of Work
+├── backend/                 Starter Express REST API & MongoDB models
+├── frontend/                Public marketing and services website (Vite + React)
+├── user-app/                Lifeline 360 Customer Native Mobile App (React Native CLI)
+├── driver-app/              Lifeline 360 Ambulance & Driver Native Mobile App (React Native CLI)
+│   ├── src/                 Theme, store, emergency workflow, navigation, screens
+│   └── release/             Signed release APK (Lifeline360-Driver-1.0.0.apk)
+├── docs/                    Engineering documentation & playbooks
+│   ├── NATIVE-APP-PLAYBOOK.md
+│   └── DRIVER-APP-PLAN.md
+└── tools/                   Scope of Work specifications
 ```
